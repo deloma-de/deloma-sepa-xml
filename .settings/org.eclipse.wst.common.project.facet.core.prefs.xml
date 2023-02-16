@@ -1,0 +1,30 @@
+<root>
+  <facet id="jpt.jaxb">
+    <node name="classgen">
+      <attribute name="package" value="de.deloma.tools.sepa.model.camt.camt540102"/>
+    </node>
+    <node name="libprov">
+      <attribute name="provider-id" value="jaxb-no-op-library-provider"/>
+    </node>
+    <node name="platform">
+      <attribute name="platform-id" value="generic_2_2"/>
+    </node>
+    <node name="schemas">
+      <node name="schema-1">
+        <attribute name="location" value="platform:/resource/deloma-sepa-xml/src/de/deloma/tools/sepa/schema/pain.008.003.02.xsd"/>
+      </node>
+      <node name="schema-2">
+        <attribute name="location" value="platform:/resource/deloma-sepa-xml/src/de/deloma/tools/sepa/schema/pain.008.001.02.xsd"/>
+      </node>
+      <node name="schema-3">
+        <attribute name="location" value="platform:/resource/deloma-sepa-xml/src/de/deloma/tools/sepa/schema/camt.052.001.02.xsd"/>
+      </node>
+      <node name="schema-4">
+        <attribute name="location" value="platform:/resource/deloma-sepa-xml/src/de/deloma/tools/sepa/schema/camt.053.001.02.xsd"/>
+      </node>
+      <node name="schema-5">
+        <attribute name="location" value="platform:/resource/deloma-sepa-xml/src/de/deloma/tools/sepa/schema/camt.054.001.02.xsd"/>
+      </node>
+    </node>
+  </facet>
+</root>

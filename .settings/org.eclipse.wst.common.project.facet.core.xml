@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="jdk1.8.0_221"/>
+  <fixed facet="jpt.jaxb"/>
+  <fixed facet="java"/>
+  <installed facet="java" version="1.8"/>
+  <installed facet="jpt.jaxb" version="2.2"/>
+</faceted-project>
