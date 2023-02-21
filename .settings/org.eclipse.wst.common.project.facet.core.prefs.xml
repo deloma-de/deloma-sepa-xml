@@ -1,7 +1,7 @@
 <root>
   <facet id="jpt.jaxb">
     <node name="classgen">
-      <attribute name="package" value="de.deloma.tools.sepa.model.camt.camt5200108"/>
+      <attribute name="package" value="de.deloma.tools.sepa.model.camt.camt5200107"/>
     </node>
     <node name="libprov">
       <attribute name="provider-id" value="jaxb-no-op-library-provider"/>
