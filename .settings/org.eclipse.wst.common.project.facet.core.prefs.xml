@@ -1,7 +1,7 @@
 <root>
   <facet id="jpt.jaxb">
     <node name="classgen">
-      <attribute name="package" value="de.deloma.tools.sepa.model.camt.camt540102"/>
+      <attribute name="package" value="de.deloma.tools.sepa.model.camt.camt5200108"/>
     </node>
     <node name="libprov">
       <attribute name="provider-id" value="jaxb-no-op-library-provider"/>
@@ -24,6 +24,9 @@
       </node>
       <node name="schema-5">
         <attribute name="location" value="platform:/resource/deloma-sepa-xml/src/de/deloma/tools/sepa/schema/camt.054.001.02.xsd"/>
+      </node>
+      <node name="schema-6">
+        <attribute name="location" value="platform:/resource/deloma-sepa-xml/src/de/deloma/tools/sepa/schema/camt.052.001.08.xsd"/>
       </node>
     </node>
   </facet>

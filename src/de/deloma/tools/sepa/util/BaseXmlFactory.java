@@ -8,12 +8,16 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.JAXBIntrospector;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+
+import com.sun.xml.internal.bind.v2.runtime.JaxBeanInfo;
 
 
 /**
@@ -91,7 +95,7 @@ public class BaseXmlFactory {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T> T parse(InputStream is, Class<?> documentClass, Class<?>... classes) throws Exception {
+	public static <T > T parse(InputStream is, Class<? extends Object> documentClass, Class<?>... classes) throws Exception {
 		
 		Objects.requireNonNull(documentClass, "documentClass"); 
 		
@@ -102,25 +106,30 @@ public class BaseXmlFactory {
 			classesParam[classesParam.length - 1] = documentClass;
 
 			// adds also abstract classes in the jaxbcontext
-			JAXBContext jc;
-
-			jc = JAXBContext.newInstance(classesParam);
+			JAXBContext jc = JAXBContext.newInstance(classesParam);
 
 			final XMLInputFactory xif = XMLInputFactory.newInstance();
 
 			// set namespace-check to false
-//			xif.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, false);
+			xif.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, true);
 			
 			final XMLStreamReader xsr = xif.createXMLStreamReader(is);
 
 			Unmarshaller unmarshaller = jc.createUnmarshaller();
-			T t = (T) unmarshaller.unmarshal(xsr);
 
-			Marshaller marshaller = jc.createMarshaller();
+			/* 
+			 * There was a Class cast exception for generic casting 
+			 * Resolves here using JAXBIntrospector
+			 * see ref: https://stackoverflow.com/a/27875551
+			 */
+			T t = (T) JAXBIntrospector.getValue(unmarshaller.unmarshal(xsr));
+
+			// Marshaller marshaller = jc.createMarshaller();
 			// marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			// marshaller.marshal(t, System.out);
 
-			return t;
+		
+			return 	t;
 		} catch (JAXBException | XMLStreamException e) {
 
 			e.printStackTrace();

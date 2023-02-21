@@ -102,9 +102,9 @@ public class PainParser {
 		T t = null;
 		switch (documentType) {
 		case PAIN00800302:
-			t = BaseXmlFactory.parse(is, de.deloma.tools.sepa.model.pain.pain0800302.ObjectFactory.class);
+			t = (T) BaseXmlFactory.parse(is, de.deloma.tools.sepa.model.pain.pain0800302.ObjectFactory.class);
 		case PAIN00800102:
-			t = BaseXmlFactory.parse(is, de.deloma.tools.sepa.model.pain.pain0800102.ObjectFactory.class);
+			t = (T) BaseXmlFactory.parse(is, de.deloma.tools.sepa.model.pain.pain0800102.ObjectFactory.class);
 			break;
 		default:
 			break;
