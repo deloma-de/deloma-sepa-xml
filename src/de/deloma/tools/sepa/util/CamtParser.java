@@ -52,7 +52,7 @@ public class CamtParser implements Serializable {
 	 * 
 	 *             TODO: USE CUSTOM EXCEPTION
 	 */
-	public <T extends Object> T parse(InputStream is) throws Exception {
+	public <T extends Object> T parse(InputStream is) throws JAXBException, XMLStreamException {
 		switch (camtType) {
 
 		case CAMT52_001_02:

@@ -30,18 +30,19 @@ import de.deloma.tools.sepa.model.pain.pain0800302.PaymentIdentificationSEPA;
 import de.deloma.tools.sepa.model.pain.pain0800302.PaymentInstructionInformationSDD;
 import de.deloma.tools.sepa.model.pain.pain0800302.RemittanceInformationSEPA1Choice;
 import de.deloma.tools.sepa.model.pain.pain0800302.SequenceType1Code;
+import de.deloma.tools.sepa.pain.PainDocument00800302;
+import de.deloma.tools.sepa.pain.PainDocumentType;
 import de.deloma.tools.sepa.pain.wrapper.CollectorPaymentInfoPain0080302;
 import de.deloma.tools.sepa.pain.wrapper.CreditorInfo;
 import de.deloma.tools.sepa.pain.wrapper.GroupHeaderInfo;
+import de.deloma.tools.sepa.pain.wrapper.SepaLocalInstrumentCode;
 import de.deloma.tools.sepa.util.PainParser;
-import de.deloma.tools.sepa.util.PainParser.PainDocumentType;
-import de.deloma.tools.sepa.util.PainParser.SepaLocalInstrumentCode;
 import de.deloma.tools.sepa.util.ParserUtils;
 
 public class PainParserTest {
 
-	static String filePath = "H:\\Test\\Parser\\xml\\test_pain.008.003.02.xml";
-	static String xsdFilePath = "H:\\Test\\Parser\\xsd\\pain.008.003.02.xsd";
+	static String filePath = MockDataForTest.TEST_FOLDER + "pain008\\test_pain.008.003.02.xml";
+	static String xsdFilePath = MockDataForTest.TEST_FOLDER + "\\xsd\\pain.008.003.02.xsd";
 	static String schemaLocation = "urn:iso:std:iso:20022:tech:xsd:pain.008.003.02 pain.008.003.02.xsd";
 	public static TimeZone TIME_ZONE_LOCALE = TimeZone.getDefault();
 	public static TimeZone TIME_ZONE_UTC = TimeZone.getTimeZone("UTC");
@@ -86,7 +87,7 @@ public class PainParserTest {
 
 			// cal.set(2023, 0, 16);
 
-			Document document = PainParser.createDocument0080302Raw(headerInfo, paymentInfoList);
+			Document document = PainDocument00800302.createDocument(headerInfo, paymentInfoList);
 
 			FileOutputStream os = new FileOutputStream(new File(filePath));
 			String xml = PainParser.createDocumentXml(filePath, PainDocumentType.PAIN00800302, document);
@@ -119,7 +120,7 @@ public class PainParserTest {
 		cal.set(2023, 2 - 1, 3);
 		Date colDate = cal.getTime();
 
-		PaymentInstructionInformationSDD col1 = PainParser.createPayInstrInfPain0080302(creditorInfo,
+		PaymentInstructionInformationSDD col1 = PainDocument00800302.createPayInstrInf(creditorInfo,
 				new CollectorPaymentInfoPain0080302(paymentInfoId, sepaLocalInstrumentCode, sequenceTypeCode, colDate,
 						transactions));
 
@@ -128,7 +129,7 @@ public class PainParserTest {
 		sequenceTypeCode = SequenceType1Code.RCUR;
 
 		// still the same creditor
-		PaymentInstructionInformationSDD col2 = PainParser.createPayInstrInfPain0080302(creditorInfo,
+		PaymentInstructionInformationSDD col2 = PainDocument00800302.createPayInstrInf(creditorInfo,
 				new CollectorPaymentInfoPain0080302(paymentInfoId, sepaLocalInstrumentCode, sequenceTypeCode, colDate,
 						transactions));
 
@@ -138,7 +139,7 @@ public class PainParserTest {
 		sequenceTypeCode = SequenceType1Code.FRST;
 
 		// still the same creditor
-		PaymentInstructionInformationSDD col3a = PainParser.createPayInstrInfPain0080302(creditorInfo,
+		PaymentInstructionInformationSDD col3a = PainDocument00800302.createPayInstrInf(creditorInfo,
 				new CollectorPaymentInfoPain0080302(paymentInfoId, sepaLocalInstrumentCode, sequenceTypeCode, colDate,
 						transactions));
 
@@ -147,7 +148,7 @@ public class PainParserTest {
 		sepaLocalInstrumentCode = SepaLocalInstrumentCode.B2B;
 		sequenceTypeCode = SequenceType1Code.RCUR;
 
-		PaymentInstructionInformationSDD col3b = PainParser.createPayInstrInfPain0080302(creditorInfo,
+		PaymentInstructionInformationSDD col3b = PainDocument00800302.createPayInstrInf(creditorInfo,
 				new CollectorPaymentInfoPain0080302(paymentInfoId, sepaLocalInstrumentCode, sequenceTypeCode, colDate,
 						transactions));
 
@@ -156,7 +157,7 @@ public class PainParserTest {
 		sepaLocalInstrumentCode = sepaLocalInstrumentCode.B2B;
 		sequenceTypeCode = SequenceType1Code.FNAL;
 
-		PaymentInstructionInformationSDD col3c = PainParser.createPayInstrInfPain0080302(creditorInfo,
+		PaymentInstructionInformationSDD col3c = PainDocument00800302.createPayInstrInf(creditorInfo,
 				new CollectorPaymentInfoPain0080302(paymentInfoId, sepaLocalInstrumentCode, sequenceTypeCode, colDate,
 						transactions));
 

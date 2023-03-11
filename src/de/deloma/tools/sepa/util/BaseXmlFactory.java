@@ -95,48 +95,42 @@ public class BaseXmlFactory {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T > T parse(InputStream is, Class<? extends Object> documentClass, Class<?>... classes) throws Exception {
+	public static <T > T parse(InputStream is, Class<? extends Object> documentClass, Class<?>... classes) throws JAXBException, XMLStreamException 
+	{
 		
 		Objects.requireNonNull(documentClass, "documentClass"); 
+
+		// Resize the classes array
+		Class<?>[] classesParam = Arrays.copyOf(classes, classes.length + 1);
+		// Provided document type
+		classesParam[classesParam.length - 1] = documentClass;
+
+		// adds also abstract classes in the jaxbcontext
+		JAXBContext jc = JAXBContext.newInstance(classesParam);
+
+		final XMLInputFactory xif = XMLInputFactory.newInstance();
+
+		// set namespace-check to false
+		xif.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, true);
 		
-		try {
-			// Resize the classes array
-			Class<?>[] classesParam = Arrays.copyOf(classes, classes.length + 1);
-			// Provided document type
-			classesParam[classesParam.length - 1] = documentClass;
+		final XMLStreamReader xsr = xif.createXMLStreamReader(is);
 
-			// adds also abstract classes in the jaxbcontext
-			JAXBContext jc = JAXBContext.newInstance(classesParam);
+		Unmarshaller unmarshaller = jc.createUnmarshaller();
 
-			final XMLInputFactory xif = XMLInputFactory.newInstance();
+		/* 
+		 * There was a Class cast exception for generic casting 
+		 * Resolves here using JAXBIntrospector
+		 * see ref: https://stackoverflow.com/a/27875551
+		 */
+		T t = (T) JAXBIntrospector.getValue(unmarshaller.unmarshal(xsr));
 
-			// set namespace-check to false
-			xif.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, true);
-			
-			final XMLStreamReader xsr = xif.createXMLStreamReader(is);
+		// Marshaller marshaller = jc.createMarshaller();
+		// marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		// marshaller.marshal(t, System.out);
 
-			Unmarshaller unmarshaller = jc.createUnmarshaller();
+	
+		return 	t;
 
-			/* 
-			 * There was a Class cast exception for generic casting 
-			 * Resolves here using JAXBIntrospector
-			 * see ref: https://stackoverflow.com/a/27875551
-			 */
-			T t = (T) JAXBIntrospector.getValue(unmarshaller.unmarshal(xsr));
-
-			// Marshaller marshaller = jc.createMarshaller();
-			// marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			// marshaller.marshal(t, System.out);
-
-		
-			return 	t;
-		} catch (JAXBException | XMLStreamException e) {
-
-			e.printStackTrace();
-
-			throw new ParseException("Parsing failed" + e.getLocalizedMessage(), 0);
-
-		}
 
 	}
 }

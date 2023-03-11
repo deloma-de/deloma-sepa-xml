@@ -51,6 +51,13 @@ import de.deloma.tools.sepa.model.pain.pain0800302.ServiceLevelSEPA;
 import de.deloma.tools.sepa.util.ParserUtils;
 
 public class MockDataForTest {
+	
+	/**
+	 * TODO make system param
+	 */
+	public static String TEST_FOLDER = "H:\\Test\\bank\\";
+	
+	
 	private static String FILEPATH = "";
 	private static String ACTUAL_MSGID = "";
 	private static String EXPECTED_MSGID = "";

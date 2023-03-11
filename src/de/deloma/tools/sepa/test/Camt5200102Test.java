@@ -55,7 +55,7 @@ public class Camt5200102Test implements Serializable {
 	@Parameters
 	public static Collection<Object[]>data(){
 		return Arrays.asList(new Object[][]{
-			{"H:\\Test\\Parser\\camt52\\2020.01.08.xml", true, "camt52_20200108173025__ONLINEBA",0}
+			{ MockDataForTest.TEST_FOLDER + "camt52\\2020.01.08.xml", true, "camt52_20200108173025__ONLINEBA",0}
 		});
 	}
 	

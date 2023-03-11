@@ -13,7 +13,6 @@ import de.deloma.tools.sepa.exception.PainParserException;
 import de.deloma.tools.sepa.exception.PainParserException.ParserExceptionType;
 import de.deloma.tools.sepa.model.pain.pain0800302.DirectDebitTransactionInformationSDD;
 import de.deloma.tools.sepa.model.pain.pain0800302.SequenceType1Code;
-import de.deloma.tools.sepa.util.PainParser.SepaLocalInstrumentCode;
 import de.deloma.tools.sepa.util.ParserUtils;
 
 
