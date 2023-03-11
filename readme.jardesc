@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="H:/Not_committed/deloma-sepa-xml/v1/deloma-sepa-xml-v2.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/deloma-sepa-xml/readme.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="/deloma-sepa-xml/deloma-sepa-xml-manifest" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="true">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/deloma-sepa-xml/pom.xml"/>
+        <folder path="/deloma-sepa-xml/doc"/>
+        <folder path="/deloma-sepa-xml/build"/>
+        <javaElement handleIdentifier="=deloma-sepa-xml/src"/>
+        <file path="/deloma-sepa-xml/readme.jardesc"/>
+        <file path="/deloma-sepa-xml/.classpath"/>
+        <folder path="/deloma-sepa-xml/target"/>
+        <file path="/deloma-sepa-xml/README.md"/>
+    </selectedElements>
+</jardesc>

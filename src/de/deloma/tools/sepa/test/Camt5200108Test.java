@@ -132,6 +132,7 @@ public class Camt5200108Test implements Serializable {
 		}
 
 	}
+		
 
 	/*---------- Helper methods ---*/
 
@@ -150,8 +151,6 @@ public class Camt5200108Test implements Serializable {
 		
 		List<CashBalance8> balances  = ACTUAL_FIRST_REPORT.getBal(); 
 		assertTrue(balances !=null && balances.size() ==2 );
-		
-		
 
 	}
 

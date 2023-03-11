@@ -16,11 +16,26 @@ import de.deloma.tools.sepa.model.camt.camt530102.ObjectFactory;
  * {@link Document052} for Camt052
  */
 public class CamtParser implements Serializable {
-	
+
 	private static final long serialVersionUID = -7216026942252041361L;
 
 	public enum CAMTTYPE {
-		CAMT52_001_02, CAMT52_001_08, CAMT53, CAMT54;
+
+		CAMT52_001_02("camt.052.001.02"), CAMT52_001_08("camt.052.001.08"),
+
+		// NOT used yet
+		CAMT53("camt.052.001.08"), CAMT54("camt.052.001.08");
+
+		private String xsdVersion;
+
+		private CAMTTYPE(String xsdVersion) {
+			this.xsdVersion = xsdVersion;
+		}
+
+		public String getXsdVersion() {
+			return xsdVersion;
+		}
+		
 
 	}
 
@@ -57,12 +72,10 @@ public class CamtParser implements Serializable {
 
 		case CAMT52_001_02:
 
-			return (T) BaseXmlFactory.<T>parse(is,
-					de.deloma.tools.sepa.model.camt.camt5200102.Document.class);
+			return (T) BaseXmlFactory.<T>parse(is, de.deloma.tools.sepa.model.camt.camt5200102.Document.class);
 
 		case CAMT52_001_08:
-			return (T) BaseXmlFactory.<T>parse(is,
-					de.deloma.tools.sepa.model.camt.camt5200108.Document.class);
+			return (T) BaseXmlFactory.<T>parse(is, de.deloma.tools.sepa.model.camt.camt5200108.Document.class);
 		default:
 			throw new UnsupportedOperationException("unknown camt type: " + camtType);
 		}
@@ -101,16 +114,33 @@ public class CamtParser implements Serializable {
 		}
 	}
 
-	private Class getCamtDocumentClassWithVersion(InputStream is) {
+	/**
+	 * Checks if 
+	 * @param is
+	 * @return
+	 */
+	public static CAMTTYPE getCamtTypeFromStream(InputStream is) {
 
-		String fileContent = "";
 		try {
-			fileContent = IOUtils.toString(is);
-
+			String fileContent = IOUtils.toString(is);
+			return getCamtTypeFromXml(fileContent); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(fileContent);
+		return null;
+	}
+
+	/**
+	 * @param fileContent
+	 * @return
+	 */
+	public static CAMTTYPE getCamtTypeFromXml(String fileContent) {
+		CAMTTYPE[] types = CAMTTYPE.values();
+
+		for (CAMTTYPE camttype : types) {
+			if (fileContent.contains(camttype.getXsdVersion()))
+				return camttype;
+		}
 		return null;
 	}
 
