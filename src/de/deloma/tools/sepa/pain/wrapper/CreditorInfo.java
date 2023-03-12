@@ -1,17 +1,21 @@
 package de.deloma.tools.sepa.pain.wrapper;
 
+import java.util.Objects;
+
 import de.deloma.tools.sepa.exception.PainParserException;
+import de.deloma.tools.sepa.util.PainParser;
 import de.deloma.tools.sepa.util.ParserUtils;
 
 /**
  * A wrapper class to populate creditor informations in Camt and Pain file
  * formats
- * 
+ *
  * @author Azahar
  * @since 2023
  * @see PainParser#createPaymentInstructionInfoSDD()
  */
-public class CreditorInfo {
+public class CreditorInfo
+{
 
 	private String name;
 	private String iban;
@@ -19,38 +23,45 @@ public class CreditorInfo {
 
 	private String glauebigerId;
 
-	public CreditorInfo() {
+	public CreditorInfo()
+	{
 	}
 
-	public CreditorInfo(String name, String iban, String bic, String glauebigerId) {
+	public CreditorInfo(final String name, final String iban, final String bic, final String glauebigerId)
+	{
 		this.name = name;
 		this.iban = iban;
 		this.bic = bic;
 		this.glauebigerId = glauebigerId;
 	}
 
-	public String getName() {
-		return name;
+	public static void validate(final CreditorInfo creditorInfo) throws PainParserException
+	{
+		Objects.requireNonNull(creditorInfo, "creditorInfo must not be null");
+		ParserUtils.checkPropertyLengthMax(creditorInfo.name, 70);
+		ParserUtils.checkPropertyLength(creditorInfo.iban, 5, 34);
+		ParserUtils.checkPropertyLength(creditorInfo.bic, 8, 11);
+		ParserUtils.checkPropertyLengthMax(creditorInfo.glauebigerId, 35);
 	}
 
-	public String getIban() {
-		return iban;
+	public String getName()
+	{
+		return this.name;
 	}
 
-	public String getBic() {
-		return bic;
+	public String getIban()
+	{
+		return this.iban;
 	}
 
-	public String getGlauebigerId() {
-		return glauebigerId;
+	public String getBic()
+	{
+		return this.bic;
 	}
-	
-	
-	public void checkProperties() throws PainParserException{
-		ParserUtils.checkPropertyLengthMax(this.name,70);
-		ParserUtils.checkPropertyLength(this.iban,5, 34);
-		ParserUtils.checkPropertyLength(this.bic, 8,11);
-		ParserUtils.checkPropertyLengthMax(this.glauebigerId,35);
+
+	public String getGlauebigerId()
+	{
+		return this.glauebigerId;
 	}
 
 }
