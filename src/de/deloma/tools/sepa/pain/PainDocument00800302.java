@@ -215,7 +215,7 @@ public class PainDocument00800302
 		crdtrBankAndBranch.setFinInstnId(crdtrBankId);
 		paymentInfo.setCdtrAgt(crdtrBankAndBranch);
 
-		// Gläubiger Id
+		// Glaeubiger Id
 		final PartyIdentificationSEPA3 cdtrSchmeId = new PartyIdentificationSEPA3();
 		final PartySEPA2 schemeId = new PartySEPA2();
 		final PersonIdentificationSEPA2 prvtId = new PersonIdentificationSEPA2();

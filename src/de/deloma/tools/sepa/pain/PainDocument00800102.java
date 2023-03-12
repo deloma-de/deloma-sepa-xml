@@ -159,7 +159,7 @@ public class PainDocument00800102
 		crdtrBankAndBranch.setFinInstnId(crdtrBankId);
 		paymentInfo.setCdtrAgt(crdtrBankAndBranch);
 
-		// Gläubiger Id
+		// Glaeubiger Id
 		final PartyIdentification32 cdtrSchmeId = new PartyIdentification32();
 		final Party6Choice schemeId = new Party6Choice();
 		final PersonIdentification5 prvtId = new PersonIdentification5();

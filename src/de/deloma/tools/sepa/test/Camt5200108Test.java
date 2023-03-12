@@ -64,7 +64,7 @@ public class Camt5200108Test implements Serializable
 	public static String EXPECTED_BANKACCOUNT_BIC;
 
 	@Parameter(5)
-	public static String EXPECTED_BANKACCOUNT_GLÄUBIGER_ID;
+	public static String EXPECTED_BANKACCOUNT_GLAEUBIGER_ID;
 
 	/*-- Test with multiple files at the same time -- */
 	@Parameters
@@ -148,8 +148,8 @@ public class Camt5200108Test implements Serializable
 		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_IBAN, Camt5200108Test.ACTUAL_FIRST_REPORT.getAcct().getId().getIBAN());
 		// BIC
 		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_BIC, Camt5200108Test.ACTUAL_FIRST_REPORT.getAcct().getSvcr().getFinInstnId().getBICFI());
-		// Gläubiger-Id
-		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_GLÄUBIGER_ID,
+		// Glaeubiger-Id
+		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_GLAEUBIGER_ID,
 			Camt5200108Test.ACTUAL_FIRST_REPORT.getAcct().getSvcr().getFinInstnId().getOthr().getId());
 	}
 
