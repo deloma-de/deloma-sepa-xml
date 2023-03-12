@@ -3,7 +3,7 @@ package de.deloma.tools.sepa.pain.wrapper;
 import java.util.Objects;
 
 import de.deloma.tools.sepa.exception.PainParserException;
-import de.deloma.tools.sepa.util.PainParser;
+import de.deloma.tools.sepa.pain.PainParser;
 import de.deloma.tools.sepa.util.ParserUtils;
 
 /**

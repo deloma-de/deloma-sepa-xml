@@ -1,4 +1,4 @@
-package de.deloma.tools.sepa.util;
+package de.deloma.tools.sepa.pain;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,11 +7,9 @@ import java.util.Objects;
 
 import de.deloma.tools.sepa.exception.PainParserException;
 import de.deloma.tools.sepa.model.pain.pain0800302.Document;
-import de.deloma.tools.sepa.pain.PainDocument00800102;
-import de.deloma.tools.sepa.pain.PainDocument00800302;
-import de.deloma.tools.sepa.pain.PainDocumentType;
 import de.deloma.tools.sepa.pain.wrapper.CollectorPaymentInfoPain;
 import de.deloma.tools.sepa.pain.wrapper.GroupHeaderInfo;
+import de.deloma.tools.sepa.util.BaseXmlFactory;
 
 /**
  * class to generate pain XML files

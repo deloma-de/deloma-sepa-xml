@@ -15,13 +15,13 @@ import java.util.TimeZone;
 
 import de.deloma.tools.sepa.exception.PainParserException;
 import de.deloma.tools.sepa.pain.PainDocumentType;
+import de.deloma.tools.sepa.pain.PainParser;
 import de.deloma.tools.sepa.pain.wrapper.CollectorPaymentInfoPain;
 import de.deloma.tools.sepa.pain.wrapper.CreditorInfo;
 import de.deloma.tools.sepa.pain.wrapper.GroupHeaderInfo;
 import de.deloma.tools.sepa.pain.wrapper.PainTransaction;
 import de.deloma.tools.sepa.pain.wrapper.SepaLocalInstrumentCode;
 import de.deloma.tools.sepa.pain.wrapper.SequenceTypeCode;
-import de.deloma.tools.sepa.util.PainParser;
 
 public class PainParserTest
 {

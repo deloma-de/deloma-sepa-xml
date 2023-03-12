@@ -7,7 +7,7 @@ import java.util.TimeZone;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import de.deloma.tools.sepa.exception.PainParserException;
-import de.deloma.tools.sepa.util.PainParser;
+import de.deloma.tools.sepa.pain.PainParser;
 import de.deloma.tools.sepa.util.ParserUtils;
 
 /**

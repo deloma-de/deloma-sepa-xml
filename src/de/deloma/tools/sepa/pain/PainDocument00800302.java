@@ -42,7 +42,6 @@ import de.deloma.tools.sepa.pain.wrapper.CreditorInfo;
 import de.deloma.tools.sepa.pain.wrapper.GroupHeaderInfo;
 import de.deloma.tools.sepa.pain.wrapper.PainTransaction;
 import de.deloma.tools.sepa.test.PainParserTest;
-import de.deloma.tools.sepa.util.PainParser;
 import de.deloma.tools.sepa.util.ParserUtils;
 
 /**
