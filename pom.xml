@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>deloma-sepa-xml</groupId>
     <artifactId>deloma-sepa-xml</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
     <name>deloma-sepa-xml</name>
 
     <properties>
@@ -202,16 +202,25 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.3.0</version>
                 <executions>
                     <execution>
+                        <id>jaxb-generated</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration>
+                            <classifier>jaxb</classifier>
+                            <classesDirectory>${project.build.directory}/target/generated-sources/jax</classesDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
+
+
         </plugins>
     </build>
 </project>
