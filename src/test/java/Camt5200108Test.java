@@ -73,7 +73,7 @@ public class Camt5200108Test implements Serializable
 		return Arrays.asList(new Object[][]
 		{
 			{
-				MockDataForTest.TEST_FOLDER + "camt52\\prod\\DE12345678912345678901\\2023.02.14.xml", CAMTTYPE.CAMT52_001_08,
+				test.MockDataForTest.TEST_FOLDER + "camt52\\prod\\DE12345678912345678901\\2023.02.14.xml", CAMTTYPE.CAMT52_001_08,
 
 				"camt52_20230216173506__ONLINEBA", "DE12345678912345678901", "SPKRDE33XXX", "DE888888888"
 
@@ -110,11 +110,11 @@ public class Camt5200108Test implements Serializable
 			Assert.assertTrue(this.actualDocument.getBkToCstmrAcctRpt() != null);
 
 			// At list one report exists
-			Assert.assertTrue(this.actualDocument.getBkToCstmrAcctRpt().getRpt().size() >= 1);
+			Assert.assertTrue(this.actualDocument.getBkToCstmrAcctRpt().getRpts().size() >= 1);
 
 			// Get the first report
-			if (this.actualDocument.getBkToCstmrAcctRpt().getRpt().get(0) != null)
-				Camt5200108Test.ACTUAL_FIRST_REPORT = this.actualDocument.getBkToCstmrAcctRpt().getRpt().get(0);
+			if (this.actualDocument.getBkToCstmrAcctRpt().getRpts().get(0) != null)
+				Camt5200108Test.ACTUAL_FIRST_REPORT = this.actualDocument.getBkToCstmrAcctRpt().getRpts().get(0);
 
 			// GroupHeader exists
 			Assert.assertTrue(this.actualDocument.getBkToCstmrAcctRpt().getGrpHdr() != null);
@@ -156,7 +156,7 @@ public class Camt5200108Test implements Serializable
 	private void showSuccessIfBalanceIsValid()
 	{
 
-		final List<CashBalance8> balances = Camt5200108Test.ACTUAL_FIRST_REPORT.getBal();
+		final List<CashBalance8> balances = Camt5200108Test.ACTUAL_FIRST_REPORT.getBals();
 		Assert.assertTrue(balances != null && balances.size() == 2);
 
 	}

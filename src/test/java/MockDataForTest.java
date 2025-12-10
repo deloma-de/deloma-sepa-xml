@@ -158,10 +158,10 @@ public class MockDataForTest {
 		// set transactions:
 		DirectDebitTransactionInformationSDD transaction1 = new DirectDebitTransactionInformationSDD();
 
-		pmtInf.getDrctDbtTxInf().add(transaction1);
+		pmtInf.getDrctDbtTxInves().add(transaction1);
 
 		pmtInf.setPmtTpInf(paymentTypeInformationSDD);
-		directDebitInitiationV02.getPmtInf().add(pmtInf);
+		directDebitInitiationV02.getPmtInves().add(pmtInf);
 
 		document.setCstmrDrctDbtInitn(directDebitInitiationV02);
 
@@ -263,7 +263,7 @@ public class MockDataForTest {
 
 		txDetails1.setRltdPties(txParties);
 		RemittanceInformation5 rmtInf = new RemittanceInformation5();
-		rmtInf.getUstrd().add("Sammler aus Testknto 2 Zweite Ueberweisung TAN:704515");
+		rmtInf.getUstrds().add("Sammler aus Testknto 2 Zweite Ueberweisung TAN:704515");
 		txDetails1.setRmtInf(rmtInf);
 		return txDetails1;
 	}

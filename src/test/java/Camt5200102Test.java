@@ -58,7 +58,7 @@ public class Camt5200102Test implements Serializable
 		return Arrays.asList(new Object[][]
 		{
 			{
-				MockDataForTest.TEST_FOLDER + "camt52\\2020.01.08.xml", true, "camt52_20200108173025__ONLINEBA", 0
+				test.MockDataForTest.TEST_FOLDER + "camt52\\2020.01.08.xml", true, "camt52_20200108173025__ONLINEBA", 0
 			}
 		});
 	}
@@ -91,7 +91,7 @@ public class Camt5200102Test implements Serializable
 
 			System.out.println(date);
 
-			final List<AccountReport11> accountreports = document052.getBkToCstmrAcctRpt().getRpt();
+			final List<AccountReport11> accountreports = document052.getBkToCstmrAcctRpt().getRpts();
 
 			// TODO: complete following check: most important properties here
 

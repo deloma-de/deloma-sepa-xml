@@ -96,7 +96,7 @@ public class PainDocument00800302
 		final CustomerDirectDebitInitiationV02 ddIntiation = new CustomerDirectDebitInitiationV02();
 		ddIntiation.setGrpHdr(grpHdr);
 		/*---------Payment Info--------*/
-		ddIntiation.getPmtInf().addAll(paymentInfoList);
+		ddIntiation.getPmtInves().addAll(paymentInfoList);
 
 		final Document document = new Document();
 		document.setCstmrDrctDbtInitn(ddIntiation);
@@ -192,7 +192,7 @@ public class PainDocument00800302
 		paymentInfo.setCdtr(creditor);
 
 		// transactions
-		paymentInfo.getDrctDbtTxInf().addAll(transactions);
+		paymentInfo.getDrctDbtTxInves().addAll(transactions);
 
 		// Constant charge bearer: SLEV
 		paymentInfo.setChrgBr(ChargeBearerTypeSEPACode.SLEV);

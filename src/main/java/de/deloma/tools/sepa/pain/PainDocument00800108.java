@@ -89,7 +89,7 @@ public class PainDocument00800108
 		final CustomerDirectDebitInitiationV08 ddIntiation = new CustomerDirectDebitInitiationV08();
 		ddIntiation.setGrpHdr(grpHdr);
 		/*---------Payment Info--------*/
-		ddIntiation.getPmtInf().addAll(paymentInfoList);
+		ddIntiation.getPmtInves().addAll(paymentInfoList);
 
 		final Document document = new Document();
 		document.setCstmrDrctDbtInitn(ddIntiation);
@@ -129,7 +129,7 @@ public class PainDocument00800108
 		serviceLevel.setCd("SEPA");
 
 		final PaymentTypeInformation29 paymentTypeInfo = new PaymentTypeInformation29();
-		paymentTypeInfo.getSvcLvl().add(serviceLevel);
+		paymentTypeInfo.getSvcLvls().add(serviceLevel);
 		paymentTypeInfo.setLclInstrm(localInstrumentSEPA);
 		paymentTypeInfo.setSeqTp(SequenceType3Code.valueOf(collectorPaymentInfo.getSequenceTypeCode().toString()));
 
@@ -144,7 +144,7 @@ public class PainDocument00800108
 		paymentInfo.setReqdColltnDt(collectorPaymentInfo.getCollectionDate());
 		paymentInfo.setCdtr(creditor);
 		// transactions
-		paymentInfo.getDrctDbtTxInf().addAll(transactions);
+		paymentInfo.getDrctDbtTxInves().addAll(transactions);
 
 		// Constant charge bearer: SLEV
 		paymentInfo.setChrgBr(ChargeBearerType1Code.SLEV);
@@ -176,7 +176,7 @@ public class PainDocument00800108
 		final PersonIdentificationSchemeName1Choice schemNm = new PersonIdentificationSchemeName1Choice();
 		schemNm.setPrtry("SEPA");
 		personIdentificationSEPA.setSchmeNm(schemNm);
-		prvtId.getOthr().add(personIdentificationSEPA);
+		prvtId.getOthrs().add(personIdentificationSEPA);
 		schemeId.setPrvtId(prvtId);
 		cdtrSchmeId.setId(schemeId);
 		paymentInfo.setCdtrSchmeId(cdtrSchmeId);
@@ -249,7 +249,7 @@ public class PainDocument00800108
 
 		// Verbindungszweck = RechnungsNr.
 		final RemittanceInformation16 rmtInf = new RemittanceInformation16();
-		rmtInf.getUstrd().add(painTransaction.getUstrdRemInf());
+		rmtInf.getUstrds().add(painTransaction.getUstrdRemInf());
 		transaction.setRmtInf(rmtInf);
 
 		return transaction;
