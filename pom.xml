@@ -1,74 +1,226 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>deloma-sepa-xml</groupId>
-	<artifactId>deloma-sepa-xml</artifactId>
-	<version>1.1</version>
-	<name>deloma-sepa-xml</name>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>deloma-sepa-xml</groupId>
+    <artifactId>deloma-sepa-xml</artifactId>
+    <version>1.1</version>
+    <name>deloma-sepa-xml</name>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.test.skip>true</maven.test.skip>
-	</properties>
+    <properties>
+        <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.test.skip>true</maven.test.skip>
+        <version.apache.commons.lang3>3.20.0</version.apache.commons.lang3>
+        <version.apache.commons.io>2.21.0</version.apache.commons.io>
+        <version.jaxb>4.0.4</version.jaxb>
+        <version.jaxb.runtime>4.0.2</version.jaxb.runtime>
+        <version.jakarta-annotation-api>3.0.0</version.jakarta-annotation-api>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13</version>
-			<scope>compile</scope>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${version.apache.commons.lang3}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${version.apache.commons.io}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${version.jaxb.runtime}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>${version.jakarta-annotation-api}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>jakarta.activation</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                    <excludes>test,test/*</excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>4.0.0</version>
+                <executions>
+                    <execution>
+                        <id>camt.052.001.02</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/schema/camt.052.001.02.xsd</source>
+                            </sources>
+                            <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax/camt.052.001.02</outputDirectory>
+                            <packageName>de.deloma.tools.sepa.model.camt.camt5200102</packageName>
+                            <enableIntrospection>false</enableIntrospection>
+                            <enableIntrospection>false</enableIntrospection>
+                            <clearOutputDir>true</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>camt.052.001.08</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/schema/camt.052.001.08.xsd</source>
+                            </sources>
+                            <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax/camt.052.001.08</outputDirectory>
+                            <packageName>de.deloma.tools.sepa.model.camt.camt5200108</packageName>
+                            <enableIntrospection>false</enableIntrospection>
+                            <enableIntrospection>false</enableIntrospection>
+                            <clearOutputDir>true</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>camt.053.001.02</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/schema/camt.053.001.02.xsd</source>
+                            </sources>
+                            <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax/camt.053.001.02</outputDirectory>
+                            <packageName>de.deloma.tools.sepa.model.camt.camt530102</packageName>
+                            <enableIntrospection>false</enableIntrospection>
+                            <enableIntrospection>false</enableIntrospection>
+                            <clearOutputDir>true</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>camt.054.001.02</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/schema/camt.054.001.02.xsd</source>
+                            </sources>
+                            <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax/camt.054.001.02</outputDirectory>
+                            <packageName>de.deloma.tools.sepa.model.camt.camt540102</packageName>
+                            <enableIntrospection>false</enableIntrospection>
+                            <enableIntrospection>false</enableIntrospection>
+                            <clearOutputDir>true</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pain.008.001.02</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/schema/pain.008.001.02.xsd</source>
+                            </sources>
+                            <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax/pain.008.001.02</outputDirectory>
+                            <packageName>de.deloma.tools.sepa.model.pain.pain0800102</packageName>
+                            <enableIntrospection>false</enableIntrospection>
+                            <enableIntrospection>false</enableIntrospection>
+                            <clearOutputDir>true</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pain.008.001.08</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/schema/pain.008.001.08.xsd</source>
+                            </sources>
+                            <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax/pain.008.001.08</outputDirectory>
+                            <packageName>de.deloma.tools.sepa.model.pain.pain0800108</packageName>
+                            <enableIntrospection>false</enableIntrospection>
+                            <enableIntrospection>false</enableIntrospection>
+                            <clearOutputDir>true</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pain.008.003.02</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/schema/pain.008.003.02.xsd</source>
+                            </sources>
+                            <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax/pain.008.003.02</outputDirectory>
+                            <packageName>de.deloma.tools.sepa.model.pain.pain0800302</packageName>
+                            <enableIntrospection>false</enableIntrospection>
+                            <enableIntrospection>false</enableIntrospection>
+                            <clearOutputDir>true</clearOutputDir>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>jaxb-generated</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>jaxb</classifier>
+                            <classesDirectory>${project.build.directory}/target/generated-sources/jax</classesDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.12.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.11.0</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.2.8</version>
-			<scope>provided</scope>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-ri -->
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-ri</artifactId>
-			<version>2.3.1</version>
-			<type>pom</type>
-		</dependency>
-
-
-	</dependencies>
-
-
-
-
-	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-					<excludes>test,test/*</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 </project>
