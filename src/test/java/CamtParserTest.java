@@ -1,11 +1,9 @@
-package test;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
@@ -20,9 +18,12 @@ import de.deloma.tools.sepa.camt.CamtParser;
 import de.deloma.tools.sepa.camt.CamtParser.CAMTTYPE;
 
 /**
- * Unit tests for {@link CamtParser}
+ * Unit tests for {@link CamtParser}.
+ *
+ * Test files use test ibans from: https://ibanvalidieren.de/beispiele.html
  *
  * @author Azahar Hossain
+ * @author Marco Janc
  *
  *         TODO: create a suite to test multiple tests at once
  */
@@ -42,12 +43,18 @@ public class CamtParserTest
 	@Parameters
 	public static Collection<Object[]> data()
 	{
-		return Arrays.asList(new Object[][]
+		final List<Object[]> data = new LinkedList<Object[]>();
+		data.add(new Object[]
 		{
-			{
-				"H:\\Test\\Parser\\camt52\\prod\\DE12345678912345678901\\2023.02.14.xml", CAMTTYPE.CAMT52_001_08
-			}
+			"/camt52/2020-01-08.xml", CAMTTYPE.CAMT52_001_02
 		});
+
+		data.add(new Object[]
+		{
+			"/camt52/2025-12-19.xml", CAMTTYPE.CAMT52_001_08
+		});
+
+		return data;
 	}
 
 	@Before
@@ -64,6 +71,11 @@ public class CamtParserTest
 		// camt52v8.testParse();
 	}
 
+	public static InputStream getFile(final String filePath)
+	{
+		return CamtParserTest.class.getResourceAsStream(filePath);
+	}
+
 	@Test
 	public void testGetCamtTypeFromStream()
 	{
@@ -71,13 +83,13 @@ public class CamtParserTest
 		InputStream is;
 		try
 		{
-			is = new FileInputStream(CamtParserTest.TEST_FILE_URI);
-			final CAMTTYPE actualType = this.parser.getCamtTypeFromStream(is);
+			is = CamtParserTest.getFile(CamtParserTest.TEST_FILE_URI);
+			final CAMTTYPE actualType = CamtParser.getCamtTypeFromStream(is);
 
 			Assert.assertEquals(CamtParserTest.type, actualType);
 
 		}
-		catch (final FileNotFoundException e)
+		catch (final Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -89,8 +101,9 @@ public class CamtParserTest
 		String xml;
 		try
 		{
-			xml = IOUtils.toString(new FileInputStream(CamtParserTest.TEST_FILE_URI));
-			final CAMTTYPE actualType = this.parser.getCamtTypeFromXml(xml);
+			final InputStream is = CamtParserTest.getFile(CamtParserTest.TEST_FILE_URI);
+			xml = IOUtils.toString(is);
+			final CAMTTYPE actualType = CamtParser.getCamtTypeFromXml(xml);
 			Assert.assertEquals(CamtParserTest.type, actualType);
 		}
 		catch (final IOException e)

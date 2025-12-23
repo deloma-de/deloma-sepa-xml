@@ -9,7 +9,7 @@
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.test.skip>true</maven.test.skip>
+        <maven.test.skip>false</maven.test.skip>
         <version.apache.commons.lang3>3.20.0</version.apache.commons.lang3>
         <version.apache.commons.io>2.21.0</version.apache.commons.io>
         <version.jaxb>4.0.4</version.jaxb>
@@ -90,11 +90,10 @@
                                 <source>src/main/resources/schema/camt.052.001.02.xsd</source>
                             </sources>
                             <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
-                            <outputDirectory>${project.build.directory}/generated-sources/jax/camt.052.001.02</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax</outputDirectory>
                             <packageName>de.deloma.tools.sepa.model.camt.camt5200102</packageName>
                             <enableIntrospection>false</enableIntrospection>
-                            <enableIntrospection>false</enableIntrospection>
-                            <clearOutputDir>true</clearOutputDir>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
                     <execution>
@@ -107,11 +106,10 @@
                                 <source>src/main/resources/schema/camt.052.001.08.xsd</source>
                             </sources>
                             <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
-                            <outputDirectory>${project.build.directory}/generated-sources/jax/camt.052.001.08</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax</outputDirectory>
                             <packageName>de.deloma.tools.sepa.model.camt.camt5200108</packageName>
                             <enableIntrospection>false</enableIntrospection>
-                            <enableIntrospection>false</enableIntrospection>
-                            <clearOutputDir>true</clearOutputDir>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
                     <execution>
@@ -124,11 +122,10 @@
                                 <source>src/main/resources/schema/camt.053.001.02.xsd</source>
                             </sources>
                             <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
-                            <outputDirectory>${project.build.directory}/generated-sources/jax/camt.053.001.02</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax</outputDirectory>
                             <packageName>de.deloma.tools.sepa.model.camt.camt530102</packageName>
                             <enableIntrospection>false</enableIntrospection>
-                            <enableIntrospection>false</enableIntrospection>
-                            <clearOutputDir>true</clearOutputDir>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
                     <execution>
@@ -141,11 +138,10 @@
                                 <source>src/main/resources/schema/camt.054.001.02.xsd</source>
                             </sources>
                             <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
-                            <outputDirectory>${project.build.directory}/generated-sources/jax/camt.054.001.02</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax</outputDirectory>
                             <packageName>de.deloma.tools.sepa.model.camt.camt540102</packageName>
                             <enableIntrospection>false</enableIntrospection>
-                            <enableIntrospection>false</enableIntrospection>
-                            <clearOutputDir>true</clearOutputDir>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
                     <execution>
@@ -158,11 +154,10 @@
                                 <source>src/main/resources/schema/pain.008.001.02.xsd</source>
                             </sources>
                             <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
-                            <outputDirectory>${project.build.directory}/generated-sources/jax/pain.008.001.02</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax</outputDirectory>
                             <packageName>de.deloma.tools.sepa.model.pain.pain0800102</packageName>
                             <enableIntrospection>false</enableIntrospection>
-                            <enableIntrospection>false</enableIntrospection>
-                            <clearOutputDir>true</clearOutputDir>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
                     <execution>
@@ -175,11 +170,10 @@
                                 <source>src/main/resources/schema/pain.008.001.08.xsd</source>
                             </sources>
                             <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
-                            <outputDirectory>${project.build.directory}/generated-sources/jax/pain.008.001.08</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax</outputDirectory>
                             <packageName>de.deloma.tools.sepa.model.pain.pain0800108</packageName>
                             <enableIntrospection>false</enableIntrospection>
-                            <enableIntrospection>false</enableIntrospection>
-                            <clearOutputDir>true</clearOutputDir>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
                     <execution>
@@ -192,11 +186,10 @@
                                 <source>src/main/resources/schema/pain.008.003.02.xsd</source>
                             </sources>
                             <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
-                            <outputDirectory>${project.build.directory}/generated-sources/jax/pain.008.003.02</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax</outputDirectory>
                             <packageName>de.deloma.tools.sepa.model.pain.pain0800302</packageName>
                             <enableIntrospection>false</enableIntrospection>
-                            <enableIntrospection>false</enableIntrospection>
-                            <clearOutputDir>true</clearOutputDir>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
                 </executions>

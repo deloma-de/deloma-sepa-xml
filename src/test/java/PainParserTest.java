@@ -1,4 +1,3 @@
-package test;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -74,8 +73,8 @@ public class PainParserTest
 
 			final CreditorInfo creditorInfo = new CreditorInfo(creditorName, creditorIban, creditorBIC, glauebigerId);
 
-			final List<CollectorPaymentInfoPain> paymentInfoList = PainParserTest.getPayInfos(msgIdSuffix,
-				transactions, creditorInfo);
+			final List<CollectorPaymentInfoPain> paymentInfoList = PainParserTest.getPayInfos(msgIdSuffix, transactions,
+				creditorInfo);
 
 			// cal.set(2023, 0, 16);
 

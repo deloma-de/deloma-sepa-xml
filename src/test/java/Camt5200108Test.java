@@ -1,13 +1,8 @@
-/**
- *
- */
-package test;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -67,18 +62,18 @@ public class Camt5200108Test implements Serializable
 	public static String EXPECTED_BANKACCOUNT_GLAEUBIGER_ID;
 
 	/*-- Test with multiple files at the same time -- */
+
 	@Parameters
 	public static Collection<Object[]> data()
 	{
-		return Arrays.asList(new Object[][]
+		final List<Object[]> data = new LinkedList<Object[]>();
+		data.add(new Object[]
 		{
-			{
-				test.MockDataForTest.TEST_FOLDER + "camt52\\prod\\DE12345678912345678901\\2023.02.14.xml", CAMTTYPE.CAMT52_001_08,
-
-				"camt52_20230216173506__ONLINEBA", "DE12345678912345678901", "SPKRDE33XXX", "DE888888888"
-
-			},
+			"/camt52/2025-12-19.xml", CAMTTYPE.CAMT52_001_08, "camt52_20251222163730__ONLINEBA",
+			"DE02120300000000202051", "BYLADEM1001", "DE123456789"
 		});
+
+		return data;
 	}
 
 	/**
@@ -100,7 +95,7 @@ public class Camt5200108Test implements Serializable
 		try
 		{
 
-			final InputStream is = new FileInputStream(Camt5200108Test.TEST_FILE_URI);
+			final InputStream is = CamtParserTest.getFile(Camt5200108Test.TEST_FILE_URI);
 			this.actualDocument = Document.class.cast(this.camtparser.<Document> parse(is));
 
 			// Document is readable and return an Object
@@ -120,7 +115,8 @@ public class Camt5200108Test implements Serializable
 			Assert.assertTrue(this.actualDocument.getBkToCstmrAcctRpt().getGrpHdr() != null);
 
 			// GroupHeader exists
-			Assert.assertEquals(Camt5200108Test.EXPECTED_MSGID, this.actualDocument.getBkToCstmrAcctRpt().getGrpHdr().getMsgId());
+			Assert.assertEquals(Camt5200108Test.EXPECTED_MSGID,
+				this.actualDocument.getBkToCstmrAcctRpt().getGrpHdr().getMsgId());
 
 			// ------ Document and File Header info ends ---//
 
@@ -145,9 +141,11 @@ public class Camt5200108Test implements Serializable
 	{
 
 		// IBAN
-		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_IBAN, Camt5200108Test.ACTUAL_FIRST_REPORT.getAcct().getId().getIBAN());
+		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_IBAN,
+			Camt5200108Test.ACTUAL_FIRST_REPORT.getAcct().getId().getIBAN());
 		// BIC
-		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_BIC, Camt5200108Test.ACTUAL_FIRST_REPORT.getAcct().getSvcr().getFinInstnId().getBICFI());
+		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_BIC,
+			Camt5200108Test.ACTUAL_FIRST_REPORT.getAcct().getSvcr().getFinInstnId().getBICFI());
 		// Glaeubiger-Id
 		Assert.assertEquals(Camt5200108Test.EXPECTED_BANKACCOUNT_GLAEUBIGER_ID,
 			Camt5200108Test.ACTUAL_FIRST_REPORT.getAcct().getSvcr().getFinInstnId().getOthr().getId());

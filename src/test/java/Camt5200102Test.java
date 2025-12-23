@@ -1,11 +1,9 @@
-package test;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -55,12 +53,13 @@ public class Camt5200102Test implements Serializable
 	@Parameters
 	public static Collection<Object[]> data()
 	{
-		return Arrays.asList(new Object[][]
+		final List<Object[]> data = new LinkedList<Object[]>();
+		data.add(new Object[]
 		{
-			{
-				test.MockDataForTest.TEST_FOLDER + "camt52\\2020.01.08.xml", true, "camt52_20200108173025__ONLINEBA", 0
-			}
+			"/camt52/2020-01-08.xml", true, "camt52_20200108173025__ONLINEBA", 0
 		});
+
+		return data;
 	}
 
 	@Before
@@ -78,7 +77,7 @@ public class Camt5200102Test implements Serializable
 		try
 		{
 
-			final InputStream fis = new FileInputStream(Camt5200102Test.TEST_FILE_URI);
+			final InputStream fis = CamtParserTest.getFile(Camt5200102Test.TEST_FILE_URI);
 
 			final Document document052 = (Document) this.camtParser52.parse(fis);
 
@@ -89,7 +88,7 @@ public class Camt5200102Test implements Serializable
 
 			final Date date = header.getCreDtTm().toGregorianCalendar().getTime();
 
-			System.out.println(date);
+			// System.out.println(date);
 
 			final List<AccountReport11> accountreports = document052.getBkToCstmrAcctRpt().getRpts();
 
