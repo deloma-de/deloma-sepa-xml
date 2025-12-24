@@ -65,6 +65,8 @@
     <build>
         <sourceDirectory>src</sourceDirectory>
         <plugins>
+        
+        	<!-- compile -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
@@ -72,9 +74,14 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
-                    <excludes>test,test/*</excludes>
+                    <excludes>
+                    	<exclude>**/test/</exclude>
+                    	<exclude>**/test</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
+            
+            <!-- jaxb xsd entity class generation -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
@@ -194,6 +201,8 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <!-- jaxb ? -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
