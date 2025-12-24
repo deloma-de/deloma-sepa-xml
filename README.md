@@ -1,32 +1,30 @@
 # deloma-sepa-xml 
 
-## A lightweight java toolkit library to work with sepa or related banking tasks.
-
+A lightweight java toolkit library to work with sepa or related banking tasks to generate SEPA direct debit collector XML files in PAIN format or parse SEPA bank account statement XML files in CAMT format.
 
 
 # Documentation 
 
-## Important notes: 
-- create JAXB classes from given xsd file by using following command: 
+## minimum Java Version Requirement
 
-`xjc -p com.package.subpackage.targetedPackageName -d drive:\path\to\xsdfile.xsd`
+|Version|min Java Version|JAXB generation|
+|:---:|:---:|:---:|
+|[2.0](https://github.com/deloma-de/deloma-sepa-xml/releases/tag/2.0)|11|maven plugin|
+|[1.1](https://github.com/deloma-de/deloma-sepa-xml/releases/tag/1.1)|8|eclipse plugin|
+|[1.0](https://github.com/deloma-de/deloma-sepa-xml/releases/tag/1.0)|8|eclipse plugin|
 
-or just simply by right clicking on the xsd file and then clicking Generate 
-  >> JAXB Classes 
-   >> Select the Project 
-   >> Select a package / give a name >> click next 
-   >> Here Trear input as XML schema must be selected, == recommended checkboxes are then `Verbose` and `Use Strict validation` == 
- see following screenshot: 
-![Generate JAXB classes in Eclipse example](https://user-images.githubusercontent.com/26557468/219416739-c0664896-e4a9-41e2-afd8-d4709b225238.png)
+## supported SEPA XML formats:
 
+|Format|min Version|
+|:---:|:---:|
+|camt.052.001.02|1.0|
+|camt.052.001.08|1.0|
+|pain.008.003.02|1.0|
+|pain.008.001.02|1.0|
+|pain.008.001.08|1.1|
 
+## Test files
 
-## Currently supported formats:
-- *CAMT*: 
-  - camt.052.001.02
-  - camt.052.001.08
+In the code folder `src/test/resources` are some test files for CAMT parsing which are used in the included unit tests. 
 
-- *PAIN*: 
-  - pain.008.003.02
-  - pain.008.001.02
-  - pain.008.001.08
+For test bank account data like IBAN check out this website [www.ibanvalidieren.de](https://ibanvalidieren.de/beispiele.html).
