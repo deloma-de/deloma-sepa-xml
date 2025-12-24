@@ -5,7 +5,7 @@ A lightweight java toolkit library to work with sepa or related banking tasks to
 
 # Documentation 
 
-## minimum Java Version Requirement
+## Minimum Java Version Requirement
 
 |Version|min Java Version|JAXB generation|
 |:---:|:---:|:---:|
@@ -13,7 +13,7 @@ A lightweight java toolkit library to work with sepa or related banking tasks to
 |[1.1](https://github.com/deloma-de/deloma-sepa-xml/releases/tag/1.1)|8|eclipse plugin|
 |[1.0](https://github.com/deloma-de/deloma-sepa-xml/releases/tag/1.0)|8|eclipse plugin|
 
-## supported SEPA XML formats:
+## Supported SEPA XML formats
 
 |Format|min Version|
 |:---:|:---:|
@@ -22,6 +22,13 @@ A lightweight java toolkit library to work with sepa or related banking tasks to
 |pain.008.003.02|1.0|
 |pain.008.001.02|1.0|
 |pain.008.001.08|1.1|
+
+## Migration Guide
+
+### 1.1 to 2.0
+
+- javax dependencies removed for new java 11 (jakarta) versions
+- functions that return collections / arrays are renamed to plural form like `getRpt()` to `getRpts()`
 
 ## Test files
 
