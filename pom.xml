@@ -199,6 +199,22 @@
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>pain.001.001.09</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/schema/pain.001.001.09.xsd</source>
+                            </sources>
+                            <xjbSources>src/main/resources/schema/bindings.xjb</xjbSources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jax</outputDirectory>
+                            <packageName>de.deloma.tools.sepa.model.pain.pain0100109</packageName>
+                            <enableIntrospection>false</enableIntrospection>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             
