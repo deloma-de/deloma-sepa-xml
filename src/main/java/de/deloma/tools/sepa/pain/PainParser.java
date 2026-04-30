@@ -8,6 +8,7 @@ import java.util.Objects;
 import de.deloma.tools.sepa.exception.PainParserException;
 import de.deloma.tools.sepa.model.pain.pain0800302.Document;
 import de.deloma.tools.sepa.pain.wrapper.CollectorPaymentInfoPain;
+import de.deloma.tools.sepa.pain.wrapper.CreditTransferPaymentInfoPain;
 import de.deloma.tools.sepa.pain.wrapper.GroupHeaderInfo;
 import de.deloma.tools.sepa.util.BaseXmlFactory;
 
@@ -52,6 +53,8 @@ public class PainParser
 				return (T) BaseXmlFactory.parse(is, de.deloma.tools.sepa.model.pain.pain0800102.ObjectFactory.class);
 			case PAIN00800108:
 				return (T) BaseXmlFactory.parse(is, de.deloma.tools.sepa.model.pain.pain0800108.ObjectFactory.class);
+			case PAIN00100109:
+			    return (T) BaseXmlFactory.parse(is,de.deloma.tools.sepa.model.pain.pain0100109.ObjectFactory.class);
 			default:
 				throw new UnsupportedOperationException("invalid type");
 		}
@@ -122,6 +125,33 @@ public class PainParser
 		final Class<?> factoryClass = type.getFactoryClass();
 
 		return BaseXmlFactory.createXmlFile(document, schemaLocation, factoryClass);
+	}
+	
+	/**
+	 * Creates the credit transfer XML document of given type
+	 *
+	 * @param type
+	 * @param headerInfo
+	 * @param paymentInfoList
+	 *
+	 * @return
+	 *
+	 * @throws IOException
+	 * @throws PainParserException
+	 */
+	public static String createCreditTransferDocumentXml(final PainDocumentType type, final GroupHeaderInfo headerInfo,
+		final List<CreditTransferPaymentInfoPain> paymentInfoList) throws IOException, PainParserException
+	{
+		switch (type)
+		{
+			case PAIN00100109:
+				final de.deloma.tools.sepa.model.pain.pain0100109.Document document00100109 =
+					PainDocument00100109.createDocument(headerInfo, paymentInfoList);
+				return PainParser.createDocumentXml(type, document00100109);
+
+			default:
+				throw new UnsupportedOperationException("unknown type");
+		}
 	}
 
 }
