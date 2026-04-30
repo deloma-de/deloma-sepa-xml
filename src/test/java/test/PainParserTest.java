@@ -21,6 +21,9 @@ import de.deloma.tools.sepa.pain.wrapper.GroupHeaderInfo;
 import de.deloma.tools.sepa.pain.wrapper.PainTransaction;
 import de.deloma.tools.sepa.pain.wrapper.SepaLocalInstrumentCode;
 import de.deloma.tools.sepa.pain.wrapper.SequenceTypeCode;
+import de.deloma.tools.sepa.pain.wrapper.CreditTransferPaymentInfoPain;
+import de.deloma.tools.sepa.pain.wrapper.CreditTransferTransactionPain;
+import de.deloma.tools.sepa.pain.wrapper.DebtorInfo;
 
 /**
  * Pain file creation test
@@ -34,11 +37,17 @@ public class PainParserTest
 
 	public static void main(final String[] args)
 	{
-		final PainDocumentType type = PainDocumentType.PAIN00800108;
+		 final PainDocumentType type = PainDocumentType.PAIN00800108;
 
-		final String filePath = PainParserTest.TEST_FOLDER + "pain008\\test-" + type.getName() + ".xml";
+		 final String filePath = PainParserTest.TEST_FOLDER + "pain008\\test-" + type.getName() + ".xml";
 
-		PainParserTest.testCreatePainXml(type, filePath);
+		 PainParserTest.testCreatePainXml(type, filePath);
+		
+		final PainDocumentType type001 = PainDocumentType.PAIN00100109;
+
+		final String filePathType001 = PainParserTest.TEST_FOLDER + "pain001\\test-" + type001.getName() + ".xml";
+
+		PainParserTest.testCreatePain001Xml(filePathType001);
 	}
 
 	/**
@@ -160,6 +169,90 @@ public class PainParserTest
 
 		return new PainTransaction(endToEndId, amount, dbtrName, dbtrIban, dbtrBic, mandateId, dtOfSgntr, ultDbtrNm,
 			ustrdRemInf);
+	}
+	
+	/**
+	 * Tests the creation of a pain.001.001.09 credit transfer XML file
+	 *
+	 * @param filePath
+	 */
+	public static void testCreatePain001Xml(final String filePath)
+	{
+		final Date creationDate = new Date();
+		final String msgIdSuffix = "test-msgId-";
+
+		final GroupHeaderInfo headerInfo = new GroupHeaderInfo(
+			msgIdSuffix + new Date().toInstant().toString(),
+			creationDate,
+			"Initiator Name"
+		);
+
+		try
+		{
+			final List<CreditTransferTransactionPain> transactions = new ArrayList<>();
+
+			final CreditTransferTransactionPain transaction = PainParserTest.createCreditTransferTransaction();
+			transactions.add(transaction);
+
+			final DebtorInfo debtorInfo = new DebtorInfo(
+				"Debtor Name",
+				"DE16200500001234567555",
+				"SPUEDE2UXXX"
+			);
+
+			final Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DAY_OF_MONTH, 1);
+
+			final CreditTransferPaymentInfoPain paymentInfo = new CreditTransferPaymentInfoPain(
+				debtorInfo,
+				msgIdSuffix + "transfer-1",
+				cal.getTime(),
+				transactions
+			);
+
+			final List<CreditTransferPaymentInfoPain> paymentInfoList = new ArrayList<>();
+			paymentInfoList.add(paymentInfo);
+
+			final String xml = PainParser.createCreditTransferDocumentXml(
+				PainDocumentType.PAIN00100109,
+				headerInfo,
+				paymentInfoList
+			);
+
+			final FileOutputStream os = new FileOutputStream(new File(filePath));
+			os.write(xml.getBytes());
+			os.close();
+
+			System.out.println(xml);
+		}
+		catch (final IOException | PainParserException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Creates a sample credit transfer transaction
+	 *
+	 * @return
+	 */
+	private static CreditTransferTransactionPain createCreditTransferTransaction()
+	{
+		final String endToEndId = "EndToEndId123";
+		final BigDecimal amount = new BigDecimal(112.72).setScale(2, RoundingMode.CEILING);
+		final String creditorName = "Creditor Name";
+		final String creditorIban = "DE87200500001234567890";
+		final String creditorBic = "BANKDEFFXXX";
+		final String ustrdRemInf = "Unstructured Remittance Information";
+
+		return new CreditTransferTransactionPain(
+			endToEndId,
+			amount,
+			creditorName,
+			creditorIban,
+			creditorBic,
+			ustrdRemInf
+		);
 	}
 
 }

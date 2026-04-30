@@ -14,7 +14,11 @@ public enum PainDocumentType
 		de.deloma.tools.sepa.model.pain.pain0800102.ObjectFactory.class),
 
 	PAIN00800108("pain.008.001.08", "urn:iso:std:iso:20022:tech:xsd:pain.008.001.08 pain.008.001.08.xsd",
-		de.deloma.tools.sepa.model.pain.pain0800108.ObjectFactory.class);
+		de.deloma.tools.sepa.model.pain.pain0800108.ObjectFactory.class),
+	
+	PAIN00100109(
+		    "pain.001.001.09","urn:iso:std:iso:20022:tech:xsd:pain.001.001.09 pain.001.001.09.xsd",
+		    de.deloma.tools.sepa.model.pain.pain0100109.ObjectFactory.class);
 
 	/**
 	 * name of the type
